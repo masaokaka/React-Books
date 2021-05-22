@@ -17,10 +17,10 @@ import Container from '@material-ui/core/Container'
 const App = ()=> {
   return (
     <React.Fragment>
-      <Header/>
-      <SideNav/>
-      <Container>
-        <Router>
+      <Router>
+        <Header/>
+        <SideNav/>
+        <Container>
           <Switch>
             <Route path='/' exact component={Home}/>
             <Route path='/register' exact component={Register}/>
@@ -30,9 +30,9 @@ const App = ()=> {
             <Route path='/ordercomp' exact component={OrderComp}/>
             <Route path='/iteminfo/:itemid' exact component={ItemInfo}/>
           </Switch>
-        </Router>
-      </Container>
-      <Footer/>
+        </Container>
+        <Footer/>
+      </Router>
     </React.Fragment>
   );
 }
