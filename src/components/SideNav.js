@@ -1,7 +1,7 @@
 import React from 'react';
+import { useHistory } from 'react-router';
 import { useSelector,useDispatch } from 'react-redux';
 import {sideNav} from '../actions';
-import {Link} from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
@@ -44,12 +44,18 @@ export const SideNav = ()=> {
 
 const SideNavContent = () =>{
   const classes = useStyles()
+  const history = useHistory()
+  const handleLink = path=>history.push(path)
   const dispatch = useDispatch()
   const menu = [
     {text:'ホーム',icon:<MailIcon/>,link:'/'},
     {text:'カート',icon:<ShoppingCartIcon/>,link:'/cart'},
     {text:'購入履歴',icon:<HistoryIcon/>,link:'/orderhistory'},
   ]
+  const link = (link)=>{
+    dispatch(sideNav(false))
+    handleLink(link)
+  }
   return (
     <div className={classes.list}>
     <List>
@@ -60,11 +66,9 @@ const SideNavContent = () =>{
     <Divider />
     <List>
       {menu.map((item, index) => (
-          <ListItem button key={index} onClick={()=>{dispatch(sideNav(false))}}>
+          <ListItem button key={index} onClick={()=>{link(item.link)}}>
             <ListItemIcon>{item.icon}</ListItemIcon>
-            <Link to={item.link}>
-              <ListItemText primary={item.text}></ListItemText>
-            </Link>
+            <ListItemText primary={item.text}></ListItemText>
           </ListItem>
       ))}
     </List>

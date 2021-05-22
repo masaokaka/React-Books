@@ -1,5 +1,8 @@
-import React from 'react';
+import React,{useEffect} from 'react';
+import {useDispatch} from 'react-redux';
+import {login,logout} from './actions'
 import {BrowserRouter as Router,Switch,Route} from 'react-router-dom'
+import firebase from 'firebase'
 
 import {Header} from './components/Header'
 import {Footer} from './components/Footer'
@@ -14,7 +17,18 @@ import {OrderComp} from './views/OrderComp'
 import {ItemInfo} from './views/ItemInfo'
 
 import Container from '@material-ui/core/Container'
+
 const App = ()=> {
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    firebase.auth().onAuthStateChanged(user=>{
+      if(user){
+        dispatch(login(user))
+      }else{
+        dispatch(logout())
+      }
+    })
+  },[])
   return (
     <React.Fragment>
       <Router>
@@ -28,7 +42,7 @@ const App = ()=> {
             <Route path='/cart' exact component={Cart}/>
             <Route path='/order' exact component={Order}/>
             <Route path='/ordercomp' exact component={OrderComp}/>
-            <Route path='/iteminfo/:itemid' exact component={ItemInfo}/>
+            <Route path='/iteminfo/:id' exact component={ItemInfo}/>
           </Switch>
         </Container>
         <Footer/>

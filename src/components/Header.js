@@ -1,6 +1,8 @@
 import React from 'react';
-import {useDispatch,useSelector} from 'react-redux';
-import {sideNav} from '../actions';
+import firebase from 'firebase'
+import {useSelector,useDispatch} from 'react-redux';
+import {useHistory} from 'react-router-dom'
+import {sideNav,logout} from '../actions';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -19,14 +21,29 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+  header:{
+    padding: theme.spacing(1, 1),
+    backgroundColor:'orange'
+  }
 }));
 
 export const Header = ()=> {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const user = useSelector(state=>state.loginstatus)
+  const history = useHistory();
+  const handleLink = path => history.push(path);
+
+  const doLogout = () =>{
+    firebase.auth().signOut().then(()=>{
+      dispatch(logout())
+    })
+    handleLink('/')
+  }
+
   return (
     <div className={classes.root}>
-    <AppBar position="static">
+    <AppBar position="static" className={classes.header}>
     <Toolbar>
       <IconButton onClick={(()=>dispatch(sideNav()))} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
         <MenuIcon/>
@@ -34,7 +51,21 @@ export const Header = ()=> {
       <Typography variant="h6" className={classes.title}>
         CurryApp
       </Typography>
-      <Button color="inherit">ログイン</Button>
+      <div>
+        { user ?
+        <div>
+          <span>ようこそ {user.displayName} さん</span>
+          <Button variant="contained" onClick={()=>handleLink('/cart')}>カート</Button>
+          <Button variant="contained" onClick={()=>handleLink('/orderhistory')}>注文履歴</Button>
+          <Button variant="contained" onClick={doLogout}>ログアウト</Button>
+        </div>
+        :
+        <div>
+          <Button variant="contained" onClick={()=>handleLink('/cart')}>カート</Button>
+          <Button variant="contained" onClick={()=>handleLink('/login')}>ログイン</Button>
+        </div>
+        }
+      </div>
     </Toolbar>
   </AppBar>
   </div>

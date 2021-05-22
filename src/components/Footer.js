@@ -1,22 +1,41 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core";
+import React from 'react';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
 
-const useStyles = makeStyles({
-  footer: {
-    color:"white",
-    backgroundColor:"#3f51b5",
-    width: "100%",
-    position: "absolute",
-    bottom: 0,
-    height:"70px",
-    textAlign:"center"
-  },
-});
-
-export const Footer = () => {
-  const classes = useStyles();
+function Copyright() {
   return (
-    <div className={classes.footer}>
+    <Typography variant="body2">
+      {'Copyright © '}
+        Masakazu Toyoyama
+      {'.'}
+    </Typography>
+  );
+}
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  footer: {
+    padding: theme.spacing(3, 2),
+    backgroundColor:'orange',
+    position:'relative'
+  },
+}));
+
+export const Footer = ()=> {
+  const classes = useStyles();
+
+  return (
+    <div className={classes.root}>
+      <footer className={classes.footer}>
+        <Container maxWidth="sm">
+          <Typography variant="body1">Curry App</Typography>
+          <Copyright />
+        </Container>
+      </footer>
     </div>
-  )
-};
+  );
+}
