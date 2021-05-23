@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export const Header = ()=> {
+const Header = ()=> {
   const classes = useStyles();
   const dispatch = useDispatch();
   const user = useSelector(state=>state.loginstatus)
@@ -71,4 +71,5 @@ export const Header = ()=> {
   </div>
   );
 }
-  
+
+export default Header;

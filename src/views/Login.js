@@ -1,13 +1,13 @@
 import React,{ useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from '../actions';
-import { InputLabel,Input} from '@material-ui/core';
+import { InputLabel,Input } from '@material-ui/core';
 import Button from "@material-ui/core/Button";
 import { useHistory } from 'react-router';
 import {Link} from 'react-router-dom'
 import firebase from 'firebase'
 
-export const Login = ()=> {
+const Login = ()=> {
     const dispatch = useDispatch()
     const history = useHistory()
     const handleLink = path=>history.push(path)
@@ -43,3 +43,5 @@ export const Login = ()=> {
       </React.Fragment>
     )
 }
+
+export default Login;

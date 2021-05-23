@@ -3,6 +3,8 @@ export const SIDENAV = 'sideNav'
 export const REGISTER = 'register'
 export const LOGIN = 'login'
 export const LOGOUT = 'logout'
+export const ADDCART = 'addcart'
+export const UPDATECART = 'updatecart'
 
 export const sideNav = (onClose) =>({
     type:SIDENAV,
@@ -18,4 +20,13 @@ export const login = (userdata) =>({
 })
 export const logout = () =>({
     type:LOGOUT,
+})
+export const addcart = (orderData) =>({
+    type:ADDCART,
+    orderData:orderData
+
+})
+export const updatecart = (orderData) =>({
+    type:UPDATECART,
+    orderData:orderData
 })

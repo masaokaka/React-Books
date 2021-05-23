@@ -4,7 +4,7 @@ import {REGISTER} from '../actions'
 
 const initialState = null
 
-export default(state=initialState,action)=>{
+const loginstatus = (state=initialState,action)=>{
     switch(action.type){
         case LOGIN:
         if(action.userdata){
@@ -17,6 +17,8 @@ export default(state=initialState,action)=>{
         case REGISTER:
             return action.userdata
         default:
-            return null
+            return state
     }
 }
+
+export default loginstatus;

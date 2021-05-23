@@ -6,7 +6,8 @@ import reducer from './reducers'
 import App from './App';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import firebase from 'firebase'
+import firebase from 'firebase/app'
+import 'firebase/firestore'
 
 const store = createStore(reducer)
 
@@ -22,6 +23,8 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
+firebase.firestore();
+firebase.auth();
 
 ReactDOM.render(
   <Provider store={store}>

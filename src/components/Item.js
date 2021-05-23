@@ -8,11 +8,12 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { Grid } from '@material-ui/core';
 
 const useStyles = makeStyles({
   root: {
-    width: 250,
-    height:300,
+    width: 280,
+    height:320,
     margin:10
   },
   media: {
@@ -34,14 +35,17 @@ export const Item = (props)=> {
           title={props.name}
         />
         <CardContent>
-          <Typography gutterBottom component="h2">
+          <Typography component="h2">
             {props.name}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardContent>
-        <Typography variant="body2" color="textPrimary" component="p">
-            {props.price}円(税抜)
+        <Typography variant="body2" color="textPrimary" component="div">
+            <Grid container>
+              <Grid item xs={6}><strong>M:</strong>{props.price}円(税抜)</Grid>
+              <Grid item xs={6}><strong>L:</strong>{props.subPrice}円(税抜)</Grid>
+            </Grid>
         </Typography>
       </CardContent>
       <CardActions>

@@ -3,7 +3,7 @@ import Box from '@material-ui/core/Box';
 import {useSelector} from 'react-redux'
 import {Item} from '../components/Item'
 
-export const Home = ()=> {
+const Home = ()=> {
   const items = useSelector(state=>state.items)
   return (
       <React.Fragment>
@@ -22,3 +22,5 @@ export const Home = ()=> {
       </React.Fragment>
   );
 }
+
+export default Home;

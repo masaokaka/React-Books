@@ -22,7 +22,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const SideNav = ()=> {
+const SideNav = ()=> {
   const toggle = useSelector(state=>state.sidenav.sideNav)
   const dispatch = useDispatch()
   return (
@@ -76,4 +76,4 @@ const SideNavContent = () =>{
   )
 }
 
-  
+export default SideNav;

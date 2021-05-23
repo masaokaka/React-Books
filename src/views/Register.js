@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import { useHistory } from 'react-router';
 import firebase from 'firebase'
 
-export const Register = () => {
+const Register = () => {
     const dispatch = useDispatch()
     const history = useHistory()
     const handleLink = path=>history.push(path)
@@ -47,3 +47,5 @@ export const Register = () => {
     </React.Fragment>
   );  
 }
+
+export default Register;

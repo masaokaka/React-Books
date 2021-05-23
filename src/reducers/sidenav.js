@@ -2,7 +2,7 @@ import {SIDENAV} from '../actions'
 
 const initialState = {sideNav:false}
 
-export default(state=initialState,action)=>{
+const sidenav = (state=initialState,action)=>{
     switch(action.type){
         case SIDENAV:
             if(action.onClose){
@@ -14,3 +14,5 @@ export default(state=initialState,action)=>{
             return state
     }
 }
+
+export default sidenav;
