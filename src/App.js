@@ -2,8 +2,9 @@ import React,{useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import {login,logout} from './actions'
 import {BrowserRouter as Router,Switch,Route} from 'react-router-dom'
+//App読み込み時にfirebase関係を全てインポートし、コンポーネントで実行処理も行う。
 import firebase from 'firebase'
-// import 'firebase/firestore'
+import './components/Firebase'
 
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -18,6 +19,7 @@ import OrderComp from './views/OrderComp'
 import ItemInfo from './views/ItemInfo'
 
 import Container from '@material-ui/core/Container'
+
 
 const App = ()=> {
   const dispatch = useDispatch()

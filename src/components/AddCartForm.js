@@ -6,6 +6,7 @@ import {ToppingsCheckBox} from '../components/ToppingsCheckBox'
 import firebase from 'firebase'
 import {addcart,updatecart} from '../actions' 
 
+const db = firebase.firestore()
 
 export const AddCartForm = (props)=>{
     const [num,setNum] = useState(1)
@@ -51,7 +52,7 @@ export const AddCartForm = (props)=>{
             totalPrice = Math.floor(props.item.subPrice*num+toppingPrice)
         }
         setTotal(totalPrice)
-    })
+    },[countToppings,checkedToppings, num, props.item.price, props.item.subPrice,size])
 
     //カートへの追加処理
     const doAddcart = ()=>{
@@ -100,7 +101,7 @@ export const AddCartForm = (props)=>{
                 //ファイアベースが初回のクリックだけ動作してくれない。
                 //クリックでここまでは入ってきているのはconsole.logで確認済み
                 console.log(orderData)
-                firebase.firestore().collection(`users/${user.uid}/orders`).add(orderData).then(doc=>{
+                db.collection(`users/${user.uid}/orders`).add(orderData).then(doc=>{
                     console.log('あいう') 
                     orderData.id = doc.id
                     dispatch(addcart(orderData))
